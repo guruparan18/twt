@@ -1,0 +1,13 @@
+body {
+    padding: 0px;
+    margin: 0px;
+}
+
+.app-body {
+    padding-left: 5px;
+}
+
+.my-card-container .mdc-card {
+    height: 350px;
+    width: 350px;
+}

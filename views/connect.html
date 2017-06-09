@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html class="mdc-typography">
+
+<head>
+    <title>Twitter Analysis for {{userName}}</title>
+    <link rel="stylesheet" href="material-components-web.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="mdc-toolbar">
+        <div class="mdc-toolbar__row">
+            <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+                <span class="mdc-toolbar__title">Twitter Analysis</span>
+            </section>
+        </div>
+    </header>
+    <div class="app-body">
+        <div class="my-card-container">
+            <div class="mdc-card">
+                <section class="mdc-card__primary">
+                    <h1 class="mdc-card__title mdc-card__title--large">{{userName}}</h1>
+                    <h2 class="mdc-card__subtitle">{{screenName}}</h2>
+                </section>
+                <img class="mdc-card__media-item mdc-card__media-item--1x" src="{{profile_image_url}}"></img>
+                <section class="mdc-card__supporting-text">
+                    {{description}}
+                </section>
+                <section class="mdc-card__actions">
+                    <button class="mdc-button mdc-button--compact mdc-card__action"> Followers - {{followersCount}}</button>
+                    <button class="mdc-button mdc-button--compact mdc-card__action"> Following - {{followingCount}}</button>
+                </section>
+            </div>
+        </div>
+        <!--
+        <h4 class="mdc-typography--display1">Username: </h4>
+        <img src="{{profile_image_url}}" />
+        <h5>{{description}}</h5>
+        -->
+        <script src="material-components-web.js"></script>
+        <script>
+            mdc.autoInit()
+        </script>
+    </div>
+</body>
+
+</html>
