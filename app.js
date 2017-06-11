@@ -20,17 +20,6 @@ app.post('/connect', function(req, res, next) {
     res.redirect('/' + userName);
 });
 
-//app.get('/[a-zA-Z]+', function(req, res) {
-/*
-app.get('/:userId(\[a-zA-Z]+)', function(req, res) {
-    res.send(req.params.userId)
-});
-*/
-
-//var uri = "mongodb://kay:myRealPassword@mycluster0-shard-00-00-wpeiv.mongodb.net:27017,mycluster0-shard-00-01-wpeiv.mongodb.net:27017,mycluster0-shard-00-02-wpeiv.mongodb.net:27017/admin?ssl=true&replicaSet=Mycluster0-shard-0&authSource=admin";
-
-//var uri = "mongodb://AdminSree:12Willer!!@cluster0-shard-00-00-w1yyv.mongodb.net:27017,cluster0-shard-00-01-w1yyv.mongodb.net:27017,cluster0-shard-00-02-w1yyv.mongodb.net:27017/test?replicaSet=Cluster0-shard-0/admin?ssl=true&replicaSet=Mycluster0-shard-0&authSource=admin";
-
 MongoClient.connect('mongodb://localhost:27017/twitter', function(err, db) {
     assert.equal(null, err);
 
@@ -54,7 +43,7 @@ MongoClient.connect('mongodb://localhost:27017/twitter', function(err, db) {
         T.get('users/show', { screen_name: userName }, function(err, data, response) {
 
             var data_json = {
-                "id": data.id,
+                "_id": data.id,
                 "name": data.name,
                 "screen_name": data.screen_name,
                 "location": data.location,
@@ -69,7 +58,17 @@ MongoClient.connect('mongodb://localhost:27017/twitter', function(err, db) {
                 "profile_background_image_url": data.profile_background_image_url,
                 "profile_image_url": data.profile_image_url,
                 "profile_banner_url": data.profile_banner_url
-            }
+            };
+
+            var insertStatus = "";
+
+            db.collection('twitter').insertOne(data_json,
+                function(err, r) {
+                    assert.equal(null, err);
+                    insertStatus = "Document inserted with _id: " + r.insertedId;
+                    console.log(insertStatus);
+                }
+            );
 
             imgURL = data_json.profile_image_url;
             description = data_json.description;
@@ -84,15 +83,9 @@ MongoClient.connect('mongodb://localhost:27017/twitter', function(err, db) {
                 'profile_image_url': imgURL,
                 'screenName': screenName,
                 'followersCount': followersCount,
-                'followingCount': followingCount
+                'followingCount': followingCount,
+                'insertStatus': insertStatus
             });
-
-            db.collection('twitter').insertOne(data_json,
-                function(err, r) {
-                    assert.equal(null, err);
-                    res.send("Document inserted with _id: " + r.insertedId);
-                }
-            );
         });
     });
 
