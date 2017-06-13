@@ -62,7 +62,7 @@ MongoClient.connect('mongodb://localhost:27017/twitter', function(err, db) {
 
             var insertStatus = "";
 
-            db.collection('twitter').insertOne(data_json,
+            db.collection('twitter').updateOne(data_json,
                 function(err, r) {
                     assert.equal(null, err);
                     insertStatus = "Document inserted with _id: " + r.insertedId;
