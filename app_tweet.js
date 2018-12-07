@@ -1,10 +1,10 @@
 var Twit = require('twit');
 var trend = new Object();
 var T = new Twit({
-    consumer_key: 'sJgS07cqtr9MV1f9rf8qQ4UFi',
-    consumer_secret: 'wpWtluZkpOkbW0VIpSXJZxYk0P6zBhOPrDhRlwiJhmI1kCLoOg',
-    access_token: '946472828374745089-MmGThSplpTkTxqklo8RFcmnnXWtbRKm',
-    access_token_secret: '2Zkqo9YRzl7xOSsPgU1xbtYsuvzR2qbtFuT4sExau9Wkd',
+    consumer_key: '',
+    consumer_secret: '',
+    access_token: '-',
+    access_token_secret: '',
     timeout_ms: 60 * 1000, // optional HTTP request timeout to apply to all requests.
 });
 
